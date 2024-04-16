@@ -16,12 +16,10 @@ class TrendsPredictor:
     def _fit_model(self):
         self.model = Arima(
             data = self.sequence,
-            p = 3,
-            d = 2,
-            q = 2
+            p = 2,
+            d = 1,
+            q = 1
         )
-        self.model.fit()
-    
 
     def forecast(self, steps=10):
         forecasts = self.model.forecast(steps)
