@@ -35,11 +35,10 @@ class Arima:
         for _ in range(steps):
             ar_terms = [last_data[j] for j in range(self.p)]
             ma_terms = predictions[-self.q:] if len(predictions) >= self.q else [0] * self.q
-            predicted = sum(self.coefficients[:self.p] * ar_terms) + sum(self.coefficients[self.p:] * ma_terms)  # Corrected typo coeffs -> coefficients
+            predicted = sum(self.coefficients[:self.p] * ar_terms) + sum(self.coefficients[self.p:] * ma_terms)
             predictions.append(round(predicted))
             last_data = np.append(last_data[1:], predicted)
         
-        # Adjusting predictions to maintain continuity
         if self.data[-1] != predictions[0]:
             adjustment = self.data[-1] - predictions[0]
             predictions = [prediction + adjustment for prediction in predictions]
