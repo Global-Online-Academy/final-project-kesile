@@ -16,7 +16,7 @@ class TrendsPredictor:
     def _fit_model(self):
         self.model = Arima(
             data = self.sequence,
-            p = 2,
+            p = 1,
             d = 1,
             q = 1
         )
@@ -37,6 +37,6 @@ class TrendsPredictor:
         return forecasts
 
 
-x = TrendsPredictor('images/chatgpt.png')
+x = TrendsPredictor('images/eras.png')
 print(x.sequence)
-print(x.forecast(100))
+print(x.forecast(10))
